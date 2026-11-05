@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тхэквондо</title>
+<style>
+.entry .rating {
+    color: #FFB800;
+    font-size: 22px;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+}
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f4f8;
+        color: #172033;
+        margin: 0;
+    }
+
+    h1 { color: #000000; }
+    p { font-size: 20px; }
+
+    header {
+        background: white;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px #cccccc;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    header h2 {
+        margin: 0;
+        color: #FF0000;
+    }
+
+    nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #172033;
+        font-weight: bold;
+    }
+
+    nav a:hover { color: #FF0000; }
+
+    .hero {
+        text-align: center;
+        padding: 100px 20px;
+        background: #eaf0ff;
+    }
+
+    .hero h1 { font-size: 45px; }
+    .hero p { color: #667085; }
+
+    .hero button {
+        background: #FF0000;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 25px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    .hero button:hover { opacity: 0.85; }
+
+    .qualities {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        margin: 15px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px #cccccc;
+        flex: 1 1 220px;
+        max-width: 300px;
+        text-align: left;
+    }
+
+    .diary {
+        background: white;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .diary input,
+    .diary textarea {
+        width: 70%;
+        max-width: 600px;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        font-family: inherit;
+    }
+
+    .diary textarea { height: 100px; }
+
+    .diary button {
+        background: #FF0000;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 25px;
+        font-size: 18px;
+        cursor: pointer;
+        display: block;
+        margin: 15px auto;
+        transition: opacity 0.2s;
+    }
+
+    .diary button:hover { opacity: 0.85; }
+
+    #clearAll {
+        background: #667085;
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    #entries { margin-top: 30px; }
+
+    .entry {
+        background: #eaf0ff;
+        padding: 20px;
+        margin: 15px auto;
+        border-radius: 15px;
+        max-width: 600px;
+        text-align: left;
+        position: relative;
+    }
+
+    .entry .date {
+        font-size: 13px;
+        color: #667085;
+        margin-bottom: 8px;
+    }
+
+    .entry .delete {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: transparent;
+        border: none;
+        color: #FF0000;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+    }
+
+    .entry .delete:hover { opacity: 0.7; }
+
+    @media (max-width: 600px) {
+        .hero h1 { font-size: 30px; }
+        .hero { padding: 60px 20px; }
+        header { padding: 15px 20px; }
+        .diary input, .diary textarea { width: 90%; }
+    }
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 42px;
+    user-select: none;
+    margin: 10px 0;
+}
+
+.stars span {
+    cursor: pointer;
+    color: #d0d5dd;            
+    transition: color 0.15s, transform 0.15s;
+}
+
+.stars span.active {
+    color: #FFB800;            
+}
+
+.stars span:hover {
+    transform: scale(1.15);     
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h2>🥋 Путь тхэквондиста</h2>
+    <nav>
+        <a href="#about">О проекте</a>
+        <a href="#qualities">Качества</a>
+        <a href="#diary">Дневник</a>
+    </nav>
+</header>
+
+<section class="hero" id="about">
+    <h1>Тхэквондо как путь к самосовершенствованию</h1>
+    <p>
+        Развивай дисциплину, самоконтроль,
+        настойчивость и уверенность в себе.
+    </p>
+    <button onclick="goToQualities()">Начать путь</button>
+</section>
+
+<section class="qualities" id="qualities">
+    <h2>Качества тхэквондиста</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>🎯 Дисциплина</h3>
+            <p>Умение соблюдать режим и выполнять поставленные задачи.</p>
+        </div>
+        <div class="card">
+            <h3>🧠 Самообладание</h3>
+            <p>Умение контролировать свои эмоции и действия.</p>
+        </div>
+        <div class="card">
+            <h3>💪 Настойчивость</h3>
+            <p>Способность продолжать работу, даже если что-то не получается.</p>
+        </div>
+        <div class="card">
+            <h3>🤝 Честность</h3>
+            <p>Способность отличать правильное от неправильного, честность перед самим собой.</p>
+        </div>
+        <div class="card">
+            <h3>🙇 Вежливость</h3>
+            <p>Уважение окружающих и соблюдение этикета.</p>
+        </div>
+    </div>
+</section>
+<style>
+.progress {
+    background: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+.progress-item {
+    background: #eaf0ff;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 12px;
+    max-width: 600px;
+}
+.progress-item label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.progress-item input {
+    width: 90%;
+    accent-color: red;
+}
+#total {
+    color: red;
+    font-size: 30px;
+}
+<style>
+.progress {
+    background: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+.progress-item {
+    background: #eaf0ff;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 12px;
+    max-width: 600px;
+}
+.progress-item label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.progress-item input {
+    width: 90%;
+    accent-color: red;
+}
+#total {
+    color: red;
+    font-size: 30px;
+}
+</style>
+
+<section class="progress" id="progress">
+    <h2>📈 Мой прогресс</h2>
+    <p>Оцени развитие своих личностных качеств</p>
+
+    <div class="progress-item">
+        <label>🎯 Дисциплина</label>
+        <input type="range" min="0" max="100" value="50" oninput="updateProgress()">
+        <span>50%</span>
+    </div>
+
+    <div class="progress-item">
+        <label>🧠 Самообладание</label>
+        <input type="range" min="0" max="100" value="50" oninput="updateProgress()">
+        <span>50%</span>
+    </div>
+
+    <div class="progress-item">
+        <label>💪 Настойчивость</label>
+        <input type="range" min="0" max="100" value="50" oninput="updateProgress()">
+        <span>50%</span>
+    </div>
+
+    <div class="progress-item">
+        <label>🤝 Ответственность</label>
+        <input type="range" min="0" max="100" value="50" oninput="updateProgress()">
+        <span>50%</span>
+    </div>
+
+    <div class="progress-item">
+        <label>⭐ Уверенность в себе</label>
+        <input type="range" min="0" max="100" value="50" oninput="updateProgress()">
+        <span>50%</span>
+    </div>
+
+    <h3>Общий прогресс: <span id="total">50</span>%</h3>
+    <p id="saved">Изменения сохраняются автоматически</p>
+</section>
+
+<script>
+function updateProgress() {
+    let sliders = document.querySelectorAll(".progress-item input");
+    let values = [];
+
+    sliders.forEach(function(slider) {
+        values.push(Number(slider.value));
+        slider.nextElementSibling.textContent = slider.value + "%";
+    });
+
+    let average = Math.round(values.reduce((a,b) => a+b, 0) / values.length);
+    document.getElementById("total").textContent = average;
+
+    localStorage.setItem("taekwondoProgress", JSON.stringify(values));
+    document.getElementById("saved").textContent = "✓ Прогресс сохранён!";
+}
+
+function loadProgress() {
+    let saved = localStorage.getItem("taekwondoProgress");
+
+    if (saved) {
+        let values = JSON.parse(saved);
+        let sliders = document.querySelectorAll(".progress-item input");
+
+        sliders.forEach(function(slider, index) {
+            if (values[index] !== undefined) {
+                slider.value = values[index];
+            }
+        });
+
+        updateProgress();
+    }
+}
+
+loadProgress();
+</script>
+<section class="diary" id="diary">
+    <h2>📔 Мой дневник</h2>
+    <p>Запиши свою цель и результат тренировки.</p>
+
+    <input id="goal" placeholder="Моя цель">
+    <textarea id="result" placeholder="Что получилось?"></textarea>
+<div class="rating-label">⭐ Оцени тренировку:</div>
+<div class="stars" id="stars">
+    <span data-value="1">★</span>
+    <span data-value="2">★</span>
+    <span data-value="3">★</span>
+    <span data-value="4">★</span>
+    <span data-value="5">★</span>
+</div>
+    <button onclick="addEntry()">Добавить запись</button>
+    <button id="clearAll" onclick="clearAllEntries()">🗑 Очистить весь дневник</button>
+
+    <div id="entries"></div>
+</section>
+
+<script>
+    const STORAGE_KEY = "taekwondo_diary_entries";
+    let currentRating = 0;
+
+    function loadEntries() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? JSON.parse(saved) : [];
+    }
+
+    function saveEntries(entries) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+    }
+
+  
+    function renderEntries() {
+        const entries = loadEntries();
+        const container = document.getElementById("entries");
+        container.innerHTML = "";
+
+        entries.forEach((entry, index) => {
+            const stars = entry.rating
+                ? "★".repeat(entry.rating) + "☆".repeat(5 - entry.rating)
+                : "";
+
+            container.innerHTML += `
+                <div class="entry">
+                    <button class="delete" onclick="deleteEntry(${index})" title="Удалить">✕</button>
+                    <div class="date">${entry.date || ""}</div>
+                    ${stars ? `<div class="rating">${stars}</div>` : ""}
+                    <h3>🎯 ${entry.goal || "Без цели"}</h3>
+                    <p>${entry.result || "Нет описания"}</p>
+                </div>
+            `;
+        });
+    }
+ function addEntry() {
+        const goalInput = document.getElementById("goal");
+        const resultInput = document.getElementById("result");
+
+        const goal = goalInput.value.trim();
+        const result = resultInput.value.trim();
+
+        if (!goal && !result) {
+            alert("Заполни хотя бы одно поле!");
+            return;
+        }
+
+        const entries = loadEntries();
+
+        entries.unshift({
+            goal: goal,
+            result: result,
+            rating: currentRating,
+            date: new Date().toLocaleString("ru-RU")
+        });
+
+        saveEntries(entries);
+        renderEntries();
+
+        goalInput.value = "";
+        resultInput.value = "";
+        setRating(0);
+    }
+
+    function deleteEntry(index) {
+        if (!confirm("Удалить эту запись?")) return;
+
+        const entries = loadEntries();
+        entries.splice(index, 1);
+        saveEntries(entries);
+        renderEntries();
+    }
+
+    function clearAllEntries() {
+        if (!confirm("Удалить ВСЕ записи дневника?")) return;
+
+        localStorage.removeItem(STORAGE_KEY);
+        renderEntries();
+    }
+
+ 
+    function goToQualities() {
+        document.getElementById("qualities").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+    function setRating(value) {
+        currentRating = value;
+        document.querySelectorAll("#stars span").forEach(star => {
+            const starValue = Number(star.dataset.value);
+            star.classList.toggle("active", starValue <= value);
+        });
+    }
+
+    document.querySelectorAll("#stars span").forEach(star => {
+        star.addEventListener("click", () => {
+            setRating(Number(star.dataset.value));
+        });
+    });
+
+
+    window.addEventListener("DOMContentLoaded", renderEntries);
+</script>
+
+</body>
+</html>
